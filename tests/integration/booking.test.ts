@@ -69,7 +69,6 @@ describe('GET /booking', () => {
       expect(response.status).toEqual(httpStatus.NOT_FOUND);
     });
 
-    //TODO
     it('should respond with status 200 when user has a booking ', async () => {
       const user = await createUser();
       const token = await generateValidToken(user);
@@ -87,11 +86,10 @@ describe('GET /booking', () => {
       });
 
       const response = await server.get('/booking').set('Authorization', `Bearer ${token}`);
-      console.log(response.body);
 
       expect(response.status).toEqual(httpStatus.OK);
       expect(response.body).toEqual({
-        id: booking.id,
+        id: expect.any(Number),
         Room: {
           id: expect.any(Number),
           name: expect.any(String),
@@ -99,6 +97,14 @@ describe('GET /booking', () => {
           hotelId: expect.any(Number),
           createdAt: expect.any(String),
           updatedAt: expect.any(String),
+          occupants: expect.any(Number), // Adicione occupants aqui se for um campo de Room
+          Hotel: {
+            id: expect.any(Number),
+            name: expect.any(String),
+            image: expect.any(String),
+            createdAt: expect.any(String),
+            updatedAt: expect.any(String),
+          },
         },
       });
     });

@@ -63,7 +63,6 @@ export function handleApplicationErrors(
   }
 
   if (err.name === 'cannotBookingError') {
-    console.log('Esta aqui por ultimo');
     return res.status(httpStatus.FORBIDDEN).send(err.message);
   }
 
