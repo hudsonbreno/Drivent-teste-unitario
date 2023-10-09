@@ -9,6 +9,7 @@ async function checkEnrollmentTicket(userId: number) {
     throw cannotBookingError();
   }
   const ticket = await ticketsRepository.findTicketByEnrollmentId(enrollment.id);
+  console.log(ticket);
 
   if (!ticket || ticket.status === 'RESERVED' || ticket.TicketType.isRemote || !ticket.TicketType.includesHotel) {
     throw cannotBookingError();
