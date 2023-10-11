@@ -41,6 +41,7 @@ export async function postBooking(req: AuthenticatedRequest, res: Response) {
 
 export async function putBooking(req: AuthenticatedRequest, res: Response) {
   try {
+    console.log('teste git');
     const { userId } = req;
 
     const bookingId = Number(req.params.bookingId);
